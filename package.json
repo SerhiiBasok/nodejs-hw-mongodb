@@ -12,6 +12,7 @@
   "devDependencies": {
     "@eslint/js": "^9.4.0",
     "eslint": "^9.4.0",
+    "fsevents": "^2.3.2",
     "globals": "^15.3.0",
     "nodemon": "^3.1.2",
     "pino-pretty": "^11.1.0"
@@ -57,7 +58,6 @@
     "find-up": "^5.0.0",
     "flat-cache": "^4.0.1",
     "flatted": "^3.3.1",
-    "fsevents": "^2.3.3",
     "glob-parent": "^5.1.2",
     "has-flag": "^3.0.0",
     "ignore": "^5.3.1",
