@@ -1,12 +1,14 @@
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-
-dotenv.config();
-
-const { MONGODB_USER, MONGODB_PASSWORD, MONGODB_URL, MONGODB_DB } = process.env;
+import { env } from '../utils/env.js';
 
 const initMongoConnection = async () => {
-  const uri = `mongodb+srv://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_URL}/${MONGODB_DB}?retryWrites=true&w=majority`;
+  const user = env('MONGODB_USER');
+  const password = env('MONGODB_PASSWORD');
+  const url = env('MONGODB_URL');
+  const dbName = env('MONGODB_DB');
+
+  const uri = `mongodb+srv://${user}:${password}@${url}/${dbName}?retryWrites=true&w=majority`;
+
   try {
     await mongoose.connect(uri);
     console.log('Mongo connection successfully established!');

@@ -7,3 +7,4 @@ const startServer = async () => {
 };
 
 startServer();
+export default setupServer;
