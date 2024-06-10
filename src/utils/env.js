@@ -10,5 +10,3 @@ export function env(name, defaultValue) {
 
 import dotenv from 'dotenv';
 dotenv.config();
-
-console.log(process.env);
