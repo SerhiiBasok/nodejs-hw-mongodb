@@ -4,6 +4,7 @@ import { SORT_ORDER } from '../constans/index.js';
 import { parseIsFavourite } from '../utils/parseFilterParams.js';
 
 export const getAllContacts = async (
+  userId,
   page = 1,
   perPage = 10,
   sortBy = 'name',
@@ -12,8 +13,7 @@ export const getAllContacts = async (
 ) => {
   const limit = perPage;
   const skip = (page - 1) * perPage;
-
-  let contactsQuery = ContactsCollection.find()
+  let contactsQuery = ContactsCollection.find({ userId })
     .skip(skip)
     .limit(limit)
     .sort({ [sortBy]: sortOrder });
@@ -27,7 +27,7 @@ export const getAllContacts = async (
     }
   }
 
-  const contactsCount = await ContactsCollection.countDocuments();
+  const contactsCount = await ContactsCollection.countDocuments(userId);
   const contacts = await contactsQuery.exec();
   const paginationData = calculatePaginationData(contactsCount, limit, page);
 
