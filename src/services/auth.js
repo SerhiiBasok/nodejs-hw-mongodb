@@ -5,6 +5,10 @@ import { UsersCollection } from '../db/models/user.js';
 import { FIFTEEN_MINUTES, ONE_DAY } from '../constans/index.js';
 import { SessionsCollection } from '../db/models/session.js';
 
+export const findUserByEmail = async (email) => {
+  return await UsersCollection.findOne({ email });
+};
+
 export const registerUser = async (payload) => {
   const encryptedPassword = await bcrypt.hash(payload.password, 10);
 
