@@ -36,6 +36,10 @@ export const setupServer = () => {
 
   app.use(errorHandler);
 
+  app.get('/test', (req, res) => {
+    res.send('Test route works!');
+  });
+
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
   });
