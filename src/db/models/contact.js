@@ -15,6 +15,9 @@ const contactsSchema = new Schema(
       lowercase: true,
       trim: true,
     },
+    photo: {
+      type: String,
+    },
     isFavourite: {
       type: Boolean,
       default: false,
@@ -25,11 +28,6 @@ const contactsSchema = new Schema(
       default: 'personal',
       required: true,
     },
-    userId: {
-      type: Schema.Types.ObjectId,
-      ref: 'User',
-      required: true,
-    },
     createdAt: {
       type: Date,
       default: Date.now,
@@ -37,6 +35,11 @@ const contactsSchema = new Schema(
     updatedAt: {
       type: Date,
       default: Date.now,
+    },
+    userId: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
     },
   },
   {
