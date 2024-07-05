@@ -10,10 +10,11 @@ import {
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 import { validateBody } from '../middlewares/validateBody.js';
 import {
-  createContactSchema,
+  creaContactSchema,
   updateContactSchema,
 } from '../validation/contacts.js';
 import { authenticate } from '../middlewares/authenticate.js';
+import { upload } from '../middlewares/multer.js';
 
 const router = Router();
 
@@ -23,18 +24,19 @@ router.get('/', ctrlWrapper(getContactsController));
 
 router.get('/:contactId', ctrlWrapper(getContactsByIdController));
 
-router.post('', ctrlWrapper(createContactController));
+router.post('', upload.single('photo'), ctrlWrapper(createContactController));
 
 router.delete('/:contactId', ctrlWrapper(deleteContactController));
 
 router.put(
   '/:contactId',
-  validateBody(createContactSchema),
+  validateBody(creaContactSchema),
   ctrlWrapper(updateContactController),
 );
 
 router.patch(
   '/:contactId',
+  upload.single('photo'),
   validateBody(updateContactSchema),
   ctrlWrapper(patchContactController),
 );
