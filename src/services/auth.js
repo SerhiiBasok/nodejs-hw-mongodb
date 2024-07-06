@@ -14,12 +14,19 @@ import fs from 'node:fs/promises';
 import { TEMPLATES_DIR } from '../constans/index.js';
 
 export const registerUser = async (payload) => {
-  const encryptedPassword = await bcrypt.hash(payload.password, 10);
+  try {
+    const encryptedPassword = await bcrypt.hash(payload.password, 10);
 
-  return await UsersCollection.create({
-    ...payload,
-    password: encryptedPassword,
-  });
+    return await UsersCollection.create({
+      ...payload,
+      password: encryptedPassword,
+    });
+  } catch (error) {
+    if (error.code === 11000 && error.keyPattern && error.keyPattern.email) {
+      throw createHttpError(409, 'Email already exists');
+    }
+    throw error;
+  }
 };
 
 export const loginUser = async (payload) => {
