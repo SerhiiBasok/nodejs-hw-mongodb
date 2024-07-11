@@ -26,15 +26,11 @@ export const creaContactSchema = Joi.object({
 
 export const updateContactSchema = Joi.object({
   name: Joi.string().min(3).max(20),
-  phoneNumber: Joi.string().min(3).max(20).required(),
-  email: Joi.string().email().required(),
-  isFavourite: Joi.boolean().required(),
-  contactType: Joi.string()
-    .min(3)
-    .max(20)
-    .valid('work', 'home', 'personal')
-    .required(),
-  createdAt: Joi.date().iso().required(),
-  updatedAt: Joi.date().iso().required(),
+  phoneNumber: Joi.string().min(3).max(20),
+  email: Joi.string().email(),
+  isFavourite: Joi.boolean(),
+  contactType: Joi.string().min(3).max(20).valid('work', 'home', 'personal'),
+  createdAt: Joi.date().iso(),
+  updatedAt: Joi.date().iso(),
   photo: Joi.string().optional(),
 });
