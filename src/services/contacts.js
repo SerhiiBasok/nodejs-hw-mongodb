@@ -63,20 +63,32 @@ export const updateContact = async (
   payload,
   options = {},
 ) => {
-  const rawResult = await ContactsCollection.findOneAndUpdate(
-    { _id: contactId, userId },
-    payload,
-    {
-      new: true,
-      includeResultMetadata: true,
-      ...options,
-    },
-  );
+  try {
+    const rawResult = await ContactsCollection.findOneAndUpdate(
+      { _id: contactId, userId },
+      payload,
+      {
+        new: true,
+        ...options,
+      },
+    );
 
-  if (!rawResult || !rawResult.value) return null;
+    if (!rawResult) {
+      console.log(
+        `No document found for contact ID: ${contactId} and user ID: ${userId}`,
+      );
+      return null;
+    }
 
-  return {
-    contact: rawResult.value,
-    isNew: Boolean(rawResult?.lastErrorObject?.upserted),
-  };
+    return {
+      contact: rawResult,
+      isNew: options.upsert ? true : false,
+    };
+  } catch (error) {
+    console.error(
+      `Error updating contact with ID: ${contactId} for user: ${userId}`,
+      error,
+    );
+    throw error;
+  }
 };

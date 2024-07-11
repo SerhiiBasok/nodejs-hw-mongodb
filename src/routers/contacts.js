@@ -30,7 +30,8 @@ router.delete('/:contactId', ctrlWrapper(deleteContactController));
 
 router.put(
   '/:contactId',
-  validateBody(creaContactSchema),
+  upload.single('photo'),
+  validateBody(updateContactSchema),
   ctrlWrapper(updateContactController),
 );
 
