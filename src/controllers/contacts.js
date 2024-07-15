@@ -137,7 +137,7 @@ export const updateContactController = async (req, res, next) => {
     });
   } catch (error) {
     console.error(
-      `Error updating contact with ID: ${contactId} for user: ${userId}`,
+      `Error updating contact with ID: ${req.params.contactId} for user: ${req.user._id}`,
       error,
     );
     next(error);
