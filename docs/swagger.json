@@ -196,11 +196,7 @@
                 "required": [
                   "name",
                   "phoneNumber",
-                  "email",
-                  "isFavourite",
                   "contactType",
-                  "updatedAt",
-                  "createdAt",
                   "userId"
                 ],
                 "properties": {
@@ -224,18 +220,6 @@
                     "description": "Contact favourite",
                     "type": "boolean",
                     "example": true
-                  },
-                  "createdAt": {
-                    "description": "When was created",
-                    "type": "string",
-                    "format": "date-time",
-                    "example": "2024-06-06T17:48:14.102Z"
-                  },
-                  "updatedAt": {
-                    "description": "When was updated",
-                    "type": "string",
-                    "format": "date-time",
-                    "example": "2024-06-06T17:48:14.102Z"
                   },
                   "contactType": {
                     "description": "Contact's type",
@@ -383,23 +367,28 @@
                 "type": "object",
                 "properties": {
                   "name": {
+                    "description": "Contact's name",
                     "type": "string",
                     "example": "John Doe"
                   },
                   "phoneNumber": {
-                    "type": "string",
+                    "description": "Phone number",
+                    "type": "number",
                     "example": "+380000000007"
                   },
                   "email": {
+                    "description": "Email address",
                     "type": "string",
                     "format": "email",
                     "example": "john.doe@example.com"
                   },
                   "isFavourite": {
+                    "description": "Contact favourite",
                     "type": "boolean",
                     "example": true
                   },
                   "contactType": {
+                    "description": "Contact's type",
                     "type": "string",
                     "enum": [
                       "work",
@@ -408,12 +397,8 @@
                     ],
                     "example": "work"
                   },
-                  "updatedAt": {
-                    "type": "string",
-                    "format": "date-time",
-                    "example": "2024-06-06T17:48:14.102Z"
-                  },
                   "photo": {
+                    "description": "Link to photo",
                     "type": "string",
                     "format": "binary"
                   }

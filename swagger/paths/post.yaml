@@ -13,11 +13,7 @@ requestBody:
         required:
           - name
           - phoneNumber
-          - email
-          - isFavourite
           - contactType
-          - updatedAt
-          - createdAt
           - userId
         properties:
           name:
@@ -37,16 +33,6 @@ requestBody:
             description: 'Contact favourite'
             type: boolean
             example: true
-          createdAt:
-            description: 'When was created'
-            type: string
-            format: date-time
-            example: '2024-06-06T17:48:14.102Z'
-          updatedAt:
-            description: 'When was updated'
-            type: string
-            format: date-time
-            example: '2024-06-06T17:48:14.102Z'
           contactType:
             description: "Contact's type"
             type: string
