@@ -144,7 +144,7 @@ export const updateContactController = async (req, res, next) => {
   }
 };
 
-export const patchContactController = async (req, res, next) => {
+export const ContactController = async (req, res, next) => {
   const { contactId } = req.params;
   const userId = req.user._id;
   const photo = req.file;
@@ -174,7 +174,7 @@ export const patchContactController = async (req, res, next) => {
 
   res.json({
     status: 200,
-    message: `Successfully patched a contact!`,
+    message: `Successfully ed a contact!`,
     data: result.contact,
   });
 };
