@@ -1,18 +1,33 @@
 openapi: 3.1.0
 info:
   version: 1.0.0
-  title: <назва вашого додатку>
+  title: Contacts-app
   license:
     name: Apache 2.0
-    url: <http://www.apache.org/licenses/LICENSE-2.0.html>
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
   description: >
-    <опис вашого додатку>
+    This is a documentation of contacts app
 tags:
+  - name: Contacts
+    description: Operations about users.
+  - name: Auth
+    description: Auth operations.
 servers:
-  - url: <http://localhost:3000>
-  - url:
+  - url: http://localhost:3000
+  - url: https://contacts-app-7.onrender.com
 paths:
-
+  /contacts:
+    get:
+      $ref: ../swagger/paths/get.yaml
+    post:
+      $ref: ../swagger/paths/post.yaml
+  /contacts/{contactId}:
+    get:
+      $ref: ../swagger/paths/{contactId}/get.yaml
+    patch:
+      $ref: ../swagger/paths/{contactId}/patch.yaml
+    delete:
+      $ref: ../swagger/paths/{contactId}/delete.yaml
 components:
   securitySchemes:
     bearerAuth:
